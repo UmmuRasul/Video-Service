@@ -1,0 +1,32 @@
+Model Architecture planning
+Membership
+    -slug (used instead of id)
+    -type(free, pro, enterprise)
+    -price
+    -stripe plan id
+
+UserMembership
+    -UserMembership  (foreignkey to default user)
+    -stripe custoer id
+    -membership type  (foreignkey to Membership)
+
+Subscription
+    -user membership       (foreignkey to UserMembership)
+    -stripe subscription id   
+    -active
+
+Course
+    -slug
+    -tittle
+    -description
+    -allowed memberships  (foreignkey to Membership)
+
+
+
+Lesson
+    -slug
+    -tittle
+    -course              (foreignkey to Course)
+    -position
+    -video
+    -thumbnail
