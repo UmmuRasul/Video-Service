@@ -19,7 +19,7 @@ Course
     -slug
     -tittle
     -description
-    -allowed memberships  (foreignkey to Membership)
+    -allowed memberships  (ManyToManyField foreignkey to Membership)
 
 
 
