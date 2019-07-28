@@ -1,5 +1,9 @@
 from django.db import models
+
+from django.urls import reverse
+
 from membership.models import Membership
+
 # Create your models here.
 
 class Course(models.Model):
@@ -11,6 +15,15 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('courses:detail', kwargs={'slug': self.slug})
+
+
+    @property
+    def lesson(self):
+        return self.lesson_set.all().order_by('position')
+
+
 class Lesson(models.Model):
     slug = models.SlugField()
     title = models.CharField(max_length=20)
@@ -21,3 +34,6 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('course:lesson-detail', kwargs={'course_slug':self.course.slug, 'lesson_slug':self.slug})
